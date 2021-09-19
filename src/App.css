@@ -1,0 +1,298 @@
+* {
+  padding: 0;
+  margin: 0;
+  outline: 0;
+  box-sizing: border-box;
+}
+html{
+  font-size: 13.8px;
+} 
+
+.homeContainer {
+  justify-content: center;
+  width: 100%;
+  min-height: 100vh;
+}
+.headerContainer {
+  align-self: flex-start;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1rem;
+}
+.btnContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20rem;
+  height: 6rem;
+  margin: 1rem;
+  border-radius: 2rem;
+  border: none;
+}
+.btnContainer--action {
+  font-weight: bold;
+  font-size: 3rem;
+  background-color: #ffffff;
+  color: #3360bf;
+  border: 0.3rem solid black;
+  box-shadow: 0.5rem 0.5rem #969191;
+}
+.btnContainer--logout {
+  background-color: #3360bf;
+  color: black;
+  font-size: 3rem;
+  font-weight: bold;
+}
+.headerContainer_action {
+  display: flex;
+  flex-direction: column;
+}
+.headerContainer_title {
+  font-size: 6rem;
+  text-align: center;
+}
+.headerContainer_logout {
+  align-self: flex-start;
+}
+.homeContainerLogo {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem 0;
+}
+.home_logo {
+  width: 30rem;
+  height: 30rem;
+}
+.cardContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.card_home {
+  border: 1rem solid #3360bf;
+  border-radius: 1rem;
+}
+.card_image {
+  width: 12rem;
+  height: 12rem;
+}
+h1 {
+  display: block;
+  font-size: 30px;
+  text-align: center;
+}
+.loginContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+.loginForm {
+  height: 40rem;
+  width: 30rem;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+  justify-content: center;
+  align-items: center;
+}
+.inputField {
+  display: block;
+  height: 3.5rem;
+  width: 100%;
+  margin: 1rem 0;
+  padding: 0.5rem;
+  border-radius: 6px;
+}
+.loginButton {
+  width: 18rem;
+  height: 3rem;
+  border-radius: 6px;
+  background-color: #3360bf;
+  font-size: 18px;
+  font-weight: bold;
+  color: #ffffff;
+  box-shadow: 3px;
+}
+.messageContainer {
+  display: flex;
+  flex-direction: column;
+}
+.messagetitle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 38px;
+  font-weight: bold;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.messageImage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+.messageContainer__form {
+ 
+  width: 100rem;
+  align-self: center;
+}
+.messageContainer__input {
+
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem 0;
+  border-radius: 5px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.messageContainer__label {
+  display: inline-block;
+  width: 15rem;
+  font-size: 2rem;
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.messageContainer__inputField {
+  display: inline-block;
+  width: 300px;
+  font-size: 1.5rem;
+  border-radius: 8px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.messagebutton {
+  display: flex;
+  flex-direction: row;
+  margin: 25px;
+  justify-content: space-between;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.sendButton {
+  width: 15rem;
+  height: 5rem;
+  border-radius: 6px;
+  background-color: #3360bf;
+  font-size: 18px;
+  font-weight: bold;
+  color: #ffffff;
+  box-shadow: 3px;
+}
+.homeButton {
+  width: 15rem;
+  height: 5rem;
+  border-radius: 6px;
+  background-color: #ffff;
+  font-size: 18px;
+  font-weight: bold;
+  color: black;
+  box-shadow: 3px;
+}
+.Searchtitle {
+  display: flex;
+  justify-content: center;
+  font-size: 38px;
+  font-weight: bold;
+  margin-top: 17px;
+}
+.searchImage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+.SearchSelectUser {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 22px;
+  font-weight: bold;
+  flex-direction: row;
+  margin-bottom: 12px;
+}
+.sellerradiobutton {
+  margin-left: 20px;
+  display: inline;
+}
+.buyerradiobutton {
+  margin-left: 20px;
+  display: inline;
+}
+.Searchfiltertitle {
+  display: flex;
+  justify-content: flex;
+  align-items: center;
+  margin-left: 12rem;
+  font-size: 23px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+.filtersContainer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.searchfiltersection01 {
+  width: 80%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 10px;
+  border-radius: 12px;
+}
+.searchfiltersection02 {
+  width: 30%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px;
+  border-radius: 12px;
+}
+.searchFilterField {
+  display: inline-block;
+  width: 200px;
+  height: 25px;
+  border-radius: 10px;
+  text-align: center;
+  height: 26px;
+  border-width: 1px;
+}
+.searchbuttonset {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+}
+.searchbutton {
+  background-color: white;
+  height: 50px;
+  width: 120px;
+  font-size: 23px;
+  font-weight: bold;
+  border-radius: 18px;
+  border-width: 4px;
+}
+.homebuttonset {
+  display: flex;
+  justify-content: left;
+  align-items: left;
+  height: 40px;
+  margin-left: 35px;
+}
+.homebutton {
+  width: 70px;
+  font-size: 16px;
+  color: #ffff;
+  background-color: #3360bf;
+  border-radius: 16px;
+}

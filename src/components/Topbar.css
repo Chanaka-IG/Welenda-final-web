@@ -1,0 +1,90 @@
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: 'Roboto', sans-serif;
+}
+
+.nav{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    min-height: 10vh;
+    background-color: rgba(251, 251, 251, 0.9);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    font-family: Montserrat;
+}
+
+.title{  
+   margin-left: 30px;
+   font-size: 22px;
+   color: #0b7e1b;
+}
+
+.nav img{
+    width: 10vh;
+    height: 10vh;
+}
+
+.nav-links{
+    display: flex;
+    justify-content: space-around;
+    width: 40%;
+}
+
+.nav-links a{
+    color: #0e0e0e;
+    text-decoration: none;
+    font-weight: bold;
+    list-style: none;
+    font-size: 2vh;
+    transition: all 0.3s ease-out;
+}
+
+.log-in{
+    background-color: #0e0e0e;
+    border: 2.5px solid #0e0e0e;
+    border-radius: 1vh;
+    padding: 1vh 2vh;
+    transition: 0.3s ease-out;
+    margin: -1vh -2vh;
+}
+
+.log-in:hover{
+    border: 2.5px solid #e42504;
+    background-color: #e42504;
+}
+
+.nav-links a:hover{
+    color: #24722E;
+    transition: all 0.3s ease-in;
+}
+
+.nav-links li{
+    margin-top: 10px;
+    list-style: none;
+    margin-left: 10px;
+}
+ .btnDanger{
+     margin-left: 500px;
+ }
+
+.burger{
+    display: none;
+    cursor: pointer;
+}
+
+.burger div{
+    width: 25px;
+    height: 3px;
+    background-color: #0e0e0e;
+    margin: 5px;
+    transition: all 0.3s ease;
+}
+
+@media screen and (max-width:1024px){
+    .nav-links{
+        width: 50%;
+    }
+}
+
