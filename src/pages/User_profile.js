@@ -9,7 +9,8 @@ import './User_profile.css';
 const UserProfile = (route) => {
 	const email = route.location.state.foo.email
 	const status = route.location.state.foo.status
-	//console.log(email)
+	const name = route.location.state.foo.name
+
 	const [seller,setSeller] = useState('')
 
 	 
@@ -17,7 +18,8 @@ const UserProfile = (route) => {
 	useEffect(() => {
 	  const fetchAPI = async () => {
 		  const response = await Axios.post('http://localhost:8000/setseller',{
-			email:email
+			email:email,
+			
 		})
 	
 	  console.log(response) 
@@ -36,13 +38,14 @@ const UserProfile = (route) => {
 		alert("Currently this user is deactive in the system")
 	 }
 	 else{
-		if (window.confirm('Are tou sure update the status?'))
+		if (window.confirm('Are tou sure update the status as a active user?'))
 					{
 						const response = await Axios.put('http://localhost:8000/approveseller',{
-							email:email
+							email:email,
+							name:name
 						})
 						if(response.data.statusVal == "200"){
-							alert("successfully updated the status!")
+							alert("successfully updated the status as a active user!")
 						}
 						else{
 							alert("Failed to update the status")

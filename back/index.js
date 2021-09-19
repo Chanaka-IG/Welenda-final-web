@@ -125,6 +125,8 @@ app.put('/approveseller', (req,res) => {
 
     const status = "active"
     const email = req.body.email
+    const name = req.body.name
+    console.log(name)
 
     db.query(
         "UPDATE `users` set status=? WHERE email=?",[status,email],
@@ -134,6 +136,32 @@ app.put('/approveseller', (req,res) => {
             }
             else if(result.affectedRows > 0){
                 res.send({statusVal: "200"})
+                const transporter = nodemailer.createTransport({
+                    service: "hotmail",
+                    auth: {
+                        user:"smartwelenda@outlook.com",
+                        pass: "smartmerchant123"
+                    }
+                })
+                
+                const options = {
+                    from: "smartwelenda@outlook.com",
+                    to: email,
+                    subject : "Welcome to smart welenda",
+                    text: `Hi ${name}. Your verification process successfully completed. Now you can login to the system using your email and password. Thank you!`
+                    
+                }
+                
+                transporter.sendMail(options, function(err,info) {
+                    if(err){
+                        console.log(err)
+                    }
+                    else{
+                      //console.log(info.response)
+                       res.send({statusVal: "200"})
+                       
+                    }
+                })
             }
             else{
                 //console.log(result)
