@@ -23,7 +23,7 @@ const UserProfile = (route) => {
 		})
 	
 	  console.log(response) 
-	  setSeller({userID : response.data[0].userID,userType: response.data[0].userType, status:response.data[0].status ,serviceCategory:response.data[0].serviceCategory,nic:response.data[0].nic ,name:response.data[0].name ,email:response.data[0].email,contactno:response.data[0].contactno,city:response.data[0].city,NICFirstUrl:response.data[0].NICFirstUrl,NICSecondUrl:response.data[0].NICSecondUrl, potraitUrl:response.data[0].potraitUrl})
+	 // setSeller({userID : response.data[0].userID,userType: response.data[0].userType, status:response.data[0].status ,serviceCategory:response.data[0].serviceCategory,nic:response.data[0].nic ,name:response.data[0].name ,email:response.data[0].email,contactno:response.data[0].contactno,city:response.data[0].city,NICFirstUrl:response.data[0].NICFirstUrl,NICSecondUrl:response.data[0].NICSecondUrl, potraitUrl:response.data[0].potraitUrl})
 			
 	  }
 	  fetchAPI()

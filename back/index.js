@@ -43,7 +43,7 @@ app.post('/selectUser', (req,res) => {
          [name,password],
          (err,result) => {
              if(err){
-                 console.log("error found")
+                 console.log("error found in selectUser")
              }
              if(result.length > 0){
                 console.log("result found")
@@ -70,7 +70,7 @@ app.post('/getbuyers', (req,res) => {
         "SELECT * FROM `users` LEFT JOIN `buyers` ON users.userID=buyers.userID WHERE users.userType='buyer'",
          (err,result) => {
              if(err){
-                 console.log("error found")
+                 console.log("error found in getbuyers")
              }
              else{
              res.send(result)
@@ -89,7 +89,7 @@ app.post('/getsellers', (req,res) => {
         "SELECT * FROM `users` LEFT JOIN `sellers` ON users.userID=sellers.userID WHERE users.userType='seller'",
          (err,result) => {
              if(err){
-                 console.log("error found")
+                 console.log("error found in getsellers")
              }
              else{
              res.send(result)
@@ -108,7 +108,7 @@ app.post('/paymentsDetails', (req,res) => {
         "SELECT * FROM `payments`",
          (err,result) => {
              if(err){
-                 console.log("error found")
+                 console.log("error found in paymentsDetails")
              }
              else{
              res.send(result)
@@ -132,7 +132,7 @@ app.put('/approveseller', (req,res) => {
         "UPDATE `users` set status=? WHERE email=?",[status,email],
          (err,result) => {
             if(err){
-                console.log("query failed")
+                console.log("query failed in approveseller")
             }
             else if(result.affectedRows > 0){
                 res.send({statusVal: "200"})
@@ -181,7 +181,7 @@ app.put('/removeseller', (req,res) => {
         "UPDATE `users` set status=? WHERE email=?",[status,email],
          (err,result) => {
             if(err){
-                console.log("query failed")
+                console.log("query failed in removeseller")
             }
             else if(result.affectedRows > 0){
                 res.send({statusVal: "200"})
@@ -204,7 +204,7 @@ app.put('/removebuyer', (req,res) => {
         "UPDATE `users` set status=? WHERE email=?",[status,email],
          (err,result) => {
             if(err){
-                console.log("query failed")
+                console.log("query failed in removebuyer")
             }
             else if(result.affectedRows > 0){
                 // console.log(result)
@@ -229,7 +229,7 @@ app.post('/setseller', (req,res) => {
         "SELECT * FROM `users` LEFT JOIN `sellers` ON users.userID=sellers.userID WHERE users.userType = 'seller' AND users.email= '" + email + "' ",
          (err,result) => {
              if(err){
-                 console.log("error found")
+                 console.log("error found in setseller")
              }
              else{
              res.send(result)
@@ -250,7 +250,7 @@ app.post('/complaints', (req,res) => {
         "SELECT * FROM `complaints`",
          (err,result) => {
              if(err){
-                 console.log("error found")
+                 console.log("error found in complaints")
              }
              else{
                  res.send(result)
@@ -274,7 +274,7 @@ app.put('/sendReply', (req,res) => {
     "UPDATE `complaints` set status=? WHERE complainID=?",[status,complainID],
      (err,result) => {
         if(err){
-            console.log("query failed")
+            console.log("query failed in sendReply")
         }
         else if(result.affectedRows > 0){
             // console.log(result)
@@ -314,6 +314,122 @@ app.put('/sendReply', (req,res) => {
 
      //send email to the customer
    
+    
+})
+
+app.post('/setpayments', (req,res) => {
+
+    const rollNo = req.body.rollNo 
+
+    db.query(
+        "SELECT * FROM `payments` JOIN `sellers` ON payments.userID=sellers.userID JOIN `users` ON payments.userID=users.userID WHERE payments.rollNo= '" + rollNo + "' ",
+         (err,result) => {
+             if(err){
+                 console.log("error found in setpayments")
+             }
+             else{
+             res.send(result)
+            // console.log(result)
+                
+             }
+         }
+    )
+
+    
+})
+
+app.post('/approvepayments', (req,res) => {
+
+    const rollNo = req.body.rollNo 
+    const paymentDate = req.body.paymentDate
+    const toValidDate = req.body.toValidDate
+
+    const vdate = new Date(toValidDate);
+    const validdate = `${vdate.getDate()}/${vdate.getMonth()+1}/${vdate.getFullYear()}`;
+    console.log(validdate)
+
+    const pdate = new Date(paymentDate);
+    const paiddate = `${pdate.getDate()}/${pdate.getMonth()+1}/${pdate.getFullYear()}`;
+    console.log(paiddate)
+
+    const current = new Date();
+    const today = `${current.getDate()}/${current.getMonth()+1}/${current.getFullYear()}`;
+    
+    const addDate = new Date();
+   addDate.setDate(addDate.getDate()+30)
+    console.log(addDate)
+
+    if( validdate === "NaN/NaN/NaN" ){
+        const status = "approved"
+
+        db.query(
+            "UPDATE `payments` set toValidDate=?, approvalDate=?, paymentstatus=? WHERE rollNo=?",[addDate,current,status,rollNo],
+             (err,result) => {
+                if(err){
+                    console.log("query failed in sendReply")
+                    res.send({statusVal: "400"})
+                }
+                else{
+                    console.log(result)
+                    res.send({statusVal: "200"})
+                }
+            })  
+    }
+    else{
+       if(validdate >= paiddate){
+        const status="approved"   
+        const valdate = new Date(toValidDate);
+        valdate.setDate(valdate.getDate()+30)
+        db.query(
+            "UPDATE `payments` set toValidDate=?, approvalDate=?, paymentstatus=? WHERE rollNo=?",[valdate,current,status,rollNo],
+             (err,result) => {
+                if(err){
+                    console.log("query failed in sendReply")
+                    res.send({statusVal: "400"})
+                }
+                else{
+                    console.log(result)
+                    res.send({statusVal: "200"})
+                }
+            })  
+
+       } 
+       else{
+        const status="approved"   
+        console.log("awa")
+        const newValidDate = new Date(paymentDate);
+        newValidDate.setDate(newValidDate.getDate()+30)
+        db.query(
+            "UPDATE `payments` set toValidDate=?, approvalDate=?, paymentstatus=? WHERE rollNo=?",[newValidDate,current,status,rollNo],
+             (err,result) => {
+                if(err){
+                    console.log("query failed in sendReply")
+                    res.send({statusVal: "400"})
+                }
+                else{
+                    console.log(result)
+                    res.send({statusVal: "200"})
+                }
+            })  
+       }
+    }
+
+   
+
+    // db.query(
+    //     "SELECT * FROM `payments` JOIN `sellers` ON payments.userID=sellers.userID JOIN `users` ON payments.userID=users.userID WHERE payments.rollNo= '" + rollNo + "' ",
+    //      (err,result) => {
+    //          if(err){
+    //              console.log("error found in setpayments")
+    //          }
+    //          else{
+    //          res.send(result)
+    //         // console.log(result)
+                
+    //          }
+    //      }
+    // )
+
     
 })
 

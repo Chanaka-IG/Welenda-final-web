@@ -15,7 +15,7 @@ function Payments(){
         const response = await Axios.post('http://localhost:8000/paymentsDetails',{
 
       })
-      console.log(response)
+    //  console.log(response)
       setPayments(response.data)
           
     }
@@ -24,11 +24,13 @@ function Payments(){
 //console.log(payments)
 
         const columns = [
+            {title: 'rollNo', field:'rollNo'},
             {title: 'Seller ID', field:'userId'},
             {title: 'Payed date', field:'paymentDate'},
             {title: 'Approved date', field:'approvalDate'},
             {title: 'Valid date', field:'toValidDate'},
-            {title: 'Status', field:'status'},
+            {title: 'Status', field:'paymentstatus'},
+          
 
         ]    
      
@@ -53,7 +55,7 @@ function Payments(){
                   <div className="userDetails__button" style={{display: "flex",
                   justifyContent: "center",
                   alignItems: "center",marginLeft: 20,}} >
-                  <Link to ="/PaymentDetails"><Button
+                  <Link to ={{pathname:"/PaymentDetails", state:{foo:props.data}}}><Button
                     /*onClick={(event) => props.action.onClick(event, props.data)}*/
                     color="primary"
                     variant="contained"
